@@ -9,6 +9,10 @@ function getComputerChoice () {
     return ret;
 }
 
+function getUserChoice () {
+    return prompt("Enter choice (Rock/paper/scissors):", "rock");
+}
+
 function playRound (playerSelection) {
     playerSelection = playerSelection.toLowerCase();
     const validChoices = ["rock", "paper", "scissors"];
@@ -17,9 +21,9 @@ function playRound (playerSelection) {
         return
     }
     let result = simulatePlay(playerSelection, getComputerChoice());
-    while (result == "replay round") {
-        console.log("TIE: replay round");
-        playerSelection = prompt("Enter choice (Rock/paper/scissors):", "rock");
+    while (result == "TIE") {
+        console.log(`${result}: replay round`);
+        playerSelection = getUserChoice();
         result = simulatePlay(playerSelection, getComputerChoice());
     }
     return result;
@@ -27,7 +31,7 @@ function playRound (playerSelection) {
 
 function simulatePlay (player, computer) {
     if (player == computer) 
-        return "replay round"
+        return "TIE"
     else if (computer == "paper" && player == "rock") 
         result = "You Lose!" + computer + " beats " + player 
     else if (computer == "scissors" && player == "paper") 
@@ -37,4 +41,20 @@ function simulatePlay (player, computer) {
     else
         result = "You Win!" + player + " beats " + computer
     return result;
+}
+
+function game() {
+    let playerWins = 0, computerWins = 0, roundCount = 1;
+    let result;
+    while (playerWins < 5 && computerWins < 5) {
+        console.log(`Round ${roundCount++}: Tally: You -> ${playerWins}, Computer -> ${computerWins}`);
+        result = playRound(getUserChoice());
+        console.log(result)
+        if (result.substring(0, 7) == "You Win")
+            playerWins++;
+        else
+            computerWins++
+    }
+    let winner = playerWins == 5 ? "You win the game" : "You lose! Computer wins!";
+    console.log(`${winner} -> Tally: You -> ${playerWins}, Computer -> ${computerWins}`);
 }
