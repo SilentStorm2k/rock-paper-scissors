@@ -1,5 +1,3 @@
-const { error, warn } = require("console");
-
 function getComputerChoice () {
     let choice = Math.floor(Math.random()*3) + 1;
     let ret;
@@ -20,38 +18,29 @@ function getComputerChoice () {
 function playRound (playerSelection) {
     playerSelection = playerSelection.toLowerCase();
     const validChoices = ["rock", "paper", "scissors"];
-    if (!validChoices.include(playerSelection)) {
+    if (!validChoices.includes(playerSelection)) {
         console.warn(`${playerSelection} is not a valid option`)
         return
     }
     let result = simulatePlay(playerSelection, getComputerChoice());
     while (result == "replay round") {
-        console.log("TIE: replay round")
-        playerSelection = prompt()
+        console.log("TIE: replay round");
+        playerSelection = prompt("Enter choice (Rock/paper/scissors):", "rock");
         result = simulatePlay(playerSelection, getComputerChoice());
     }
     return result;
 }
 
 function simulatePlay (player, computer) {
-    if (player == computer) {
+    if (player == computer) 
         return "replay round"
-    }
-    switch (player) {
-        case "rock":   
-            if (computer == "paper") 
-                result = "You Lose!" + computer + " beats " + player 
-            break;
-        case "paper": 
-            if (computer == "scissors") 
-                result = "You Lose!" + computer + " beats " + player
-            break;
-        case "scissors":  
-            if (computer == "rock") 
-                result = "You Lose!" + computer + " beats " + player
-            break;
-        default:   
-            result = "You Win!" + player + " beats " + computer
-    }
+    else if (computer == "paper" && player == "rock") 
+        result = "You Lose!" + computer + " beats " + player 
+    else if (computer == "scissors" && player == "paper") 
+        result = "You Lose!" + computer + " beats " + player
+    else if (computer == "rock" && player == "scissors") 
+        result = "You Lose!" + computer + " beats " + player
+    else
+        result = "You Win!" + player + " beats " + computer
     return result;
 }
