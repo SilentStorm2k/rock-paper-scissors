@@ -1,5 +1,18 @@
 function getComputerChoice () {
-    return Math.floor(Math.random()*3) + 1;
+    let choice = Math.floor(Math.random()*3) + 1;
+    let ret;
+    switch (choice) {
+        case 1:
+            ret = "rock"
+            break;
+        case 2:
+            ret = "paper"
+            break;
+        case 3:
+            ret = "scissors"
+            break;
+    }
+    return ret;
 }
 
 function playRound (playerSelection) {
@@ -14,5 +27,5 @@ function playRound (playerSelection) {
         case "scissors":    playerChoice = 3; break;
         default:            playerChoice = 0;
     }
-
+    
 }
