@@ -1,6 +1,11 @@
 const userChoice = document.querySelector(".user-choice-container");
 const reset = document.querySelector(".reset");
 const computerChoiceContainer = document.querySelector(".computer-choice");
+const userScore = document.querySelector(".user-score");
+const computerScore = document.querySelector(".computer-score");
+const currentResult = document.querySelector(".result");
+const currentRound = document.querySelector("h1");
+
 let currentUserChoice = rock;
 let playerWins = 0, computerWins = 0, roundCount = 1;
 displayComputerChoice("q-mark")
@@ -10,7 +15,11 @@ reset.addEventListener('click', () => {
     computerWins = 0;
     roundCount = 1;
     userChoice.addEventListener('click', startRound);
-    displayComputerChoice("q-mark")
+    displayComputerChoice("q-mark");
+    currentRound.textContent = "Round 1";
+    userScore.textContent = "0";
+    computerScore.textContent = "0";
+    currentResult.textContent = "";
 });
 
 userChoice.addEventListener('click', startRound);
@@ -23,6 +32,7 @@ function startRound(event) {
 }
 
 function playRound (playerSelection) {
+    roundCount++;
     let computerChoice = getComputerChoice();
     let result = simulatePlay(playerSelection, computerChoice);
     displayComputerChoice(computerChoice);
@@ -30,11 +40,19 @@ function playRound (playerSelection) {
             playerWins++;
     if (result.substring(0, 7) == "You Los")
             computerWins++;
+    updateScore(playerWins, computerWins, result, roundCount);
     if (playerWins >= 5 || computerWins >= 5) {
-        let winner = playerWins >= 5 ? "You win the game" : "You lose! Computer wins!";
+        let winner = playerWins >= 5 ? "You win the game!" : "You lose! Computer wins!";
         endGame(winner);
     }
     return result;
+}
+
+function updateScore (user, computer, result, roundCount) {
+    userScore.textContent = user;
+    computerScore.textContent = computer;
+    currentResult.textContent = result;
+    currentRound.textContent = "Round " + roundCount + ":";
 }
 
 function getComputerChoice () {
@@ -50,7 +68,7 @@ function getComputerChoice () {
 
 function simulatePlay (player, computer) {
     if (player == computer) 
-        return "TIE"
+        return "TIE - Play again"
     else if (computer == "paper" && player == "rock") 
         result = "You Lose! " + computer + " beats " + player 
     else if (computer == "scissors" && player == "paper") 
@@ -58,7 +76,7 @@ function simulatePlay (player, computer) {
     else if (computer == "rock" && player == "scissors") 
         result = "You Lose! " + computer + " beats " + player
     else
-        result = "You Win! the" + player + " beats " + computer
+        result = "You Win! " + player + " beats " + computer
     return result;
 }
 
@@ -81,5 +99,6 @@ function clearComputerChoice() {
 
 function endGame(winner) {
     userChoice.removeEventListener('click', startRound);
-    console.log(winner)
+    currentRound.textContent = "Game Over"
+    currentResult.textContent = winner;
 }
