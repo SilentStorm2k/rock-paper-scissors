@@ -45,7 +45,8 @@ body {
     border-right: 1rem solid #000000;
 }
 
-.user-choice-container {
+.user-choice-container,
+.computer-choice {
     display: flex;
     flex-direction: column;
     justify-content: center;

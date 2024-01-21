@@ -9,24 +9,50 @@ function getComputerChoice () {
     return ret;
 }
 
-function getUserChoice () {
-    return prompt("Enter choice (Rock/paper/scissors):", "rock");
+const computerChoiceContainer = document.querySelector(".computer-choice");
+
+function displayComputerChoice(computerChoice) {
+    clearComputerChoice();
+    const compChoice = document.createElement('img');
+    compChoice.src = "images/" + computerChoice + ".png";
+    compChoice.style.width = "10rem";
+    compChoice.style.height = "10rem";
+    compChoice.style.border = "0.4rem solid #000000";
+    computerChoiceContainer.appendChild(compChoice);
 }
 
+function clearComputerChoice() {
+    while (computerChoiceContainer.firstChild) 
+        computerChoiceContainer.removeChild(computerChoiceContainer.lastChild);
+}
+
+let playerWins = 0, computerWins = 0, roundCount = 1;
+
 function playRound (playerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    const validChoices = ["rock", "paper", "scissors"];
-    if (!validChoices.includes(playerSelection)) {
-        console.warn(`${playerSelection} is not a valid option`)
-        return
-    }
-    let result = simulatePlay(playerSelection, getComputerChoice());
-    while (result == "TIE") {
-        console.log(`${result}: replay round`);
-        playerSelection = getUserChoice();
-        result = simulatePlay(playerSelection, getComputerChoice());
+    let computerChoice = getComputerChoice();
+    let result = simulatePlay(playerSelection, computerChoice);
+    displayComputerChoice(computerChoice);
+    if (result.substring(0, 7) == "You Win")
+            playerWins++;
+    if (result.substring(0, 7) == "You Los")
+            computerWins++;
+    if (playerWins >= 5 || computerWins >= 5) {
+        let winner = playerWins >= 5 ? "You win the game" : "You lose! Computer wins!";
+        endGame(winner);
     }
     return result;
+}
+
+function startRound(event) {
+    if (event.target.nodeName !== "BUTTON")
+            return;
+    currentUserChoice = event.target.id;
+    playRound(currentUserChoice);
+}
+
+function endGame(winner) {
+    userChoice.removeEventListener('click', startRound);
+    console.log("GAME ENDED")
 }
 
 function simulatePlay (player, computer) {
@@ -66,5 +92,6 @@ userChoice.addEventListener('click', (event) => {
     if (event.target.nodeName !== "BUTTON")
         return;
     currentUserChoice = event.target.id;
+    playRound(currentUserChoice);
 })
 
