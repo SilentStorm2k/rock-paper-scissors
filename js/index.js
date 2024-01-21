@@ -33,13 +33,13 @@ function simulatePlay (player, computer) {
     if (player == computer) 
         return "TIE"
     else if (computer == "paper" && player == "rock") 
-        result = "You Lose!" + computer + " beats " + player 
+        result = "You Lose! " + computer + " beats " + player 
     else if (computer == "scissors" && player == "paper") 
-        result = "You Lose!" + computer + " beats " + player
+        result = "You Lose! " + computer + " beats " + player
     else if (computer == "rock" && player == "scissors") 
-        result = "You Lose!" + computer + " beats " + player
+        result = "You Lose! " + computer + " beats " + player
     else
-        result = "You Win!" + player + " beats " + computer
+        result = "You Win! the" + player + " beats " + computer
     return result;
 }
 
