@@ -43,6 +43,14 @@ body {
     flex: 2;
     border-left: 1rem solid #F0EDCF;
     border-right: 1rem solid #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset {
+    width: 5rem;
+    height: 2.5rem;
 }
 
 .user-choice-container,
