@@ -1,0 +1,60 @@
+html, 
+body {
+    height: 100%;
+}
+
+* {
+    border: 1px solid red;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.header,
+.content,
+.footer {
+    display: flex;
+}
+
+.header {
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background-color: #F0EDCF;
+}
+
+.invisible {
+    color: transparent;
+}
+
+#link-to-code,
+.title {
+    margin: 1rem;
+}
+
+.content {
+
+}
+
+.content > * {
+    flex: 1;
+}
+
+.user-choice-container,
+.computer-choice {
+    background-color: #0B60B0;
+}
+
+.result-container {
+    background-color: #40A2D8;
+}
+
+.footer {
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: #F0EDCF;
+    background-color: #000000;
+}
