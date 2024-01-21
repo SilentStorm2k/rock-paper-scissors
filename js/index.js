@@ -53,8 +53,18 @@ function game() {
         if (result.substring(0, 7) == "You Win")
             playerWins++;
         else
-            computerWins++
+            computerWins++;
     }
     let winner = playerWins == 5 ? "You win the game" : "You lose! Computer wins!";
     console.log(`${winner} -> Tally: You -> ${playerWins}, Computer -> ${computerWins}`);
 }
+
+const userChoice = document.querySelector(".user-choice-container");
+let currentUserChoice = rock;
+
+userChoice.addEventListener('click', (event) => {
+    if (event.target.nodeName !== "BUTTON")
+        return;
+    currentUserChoice = event.target.id;
+})
+
