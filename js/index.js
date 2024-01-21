@@ -101,4 +101,8 @@ function endGame(winner) {
     userChoice.removeEventListener('click', startRound);
     currentRound.textContent = "Game Over"
     currentResult.textContent = winner;
+    if (winner == "You win the game!") 
+        userScore.style.color = "#F0EDCF";
+    else 
+        computerScore.style.color = "#F0EDCF";
 }
