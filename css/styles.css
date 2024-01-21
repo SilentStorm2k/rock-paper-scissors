@@ -11,6 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    font-family: 'Aclonica', Georgia, 'Times New Roman', Times, serif;
 }
 
 .header,
@@ -25,6 +26,18 @@ body {
     align-items: center;
     gap: 1rem;
     background-color: #F0EDCF;
+}
+
+.title {
+    font-size: xx-large;
+}
+
+#link-to-code {
+    text-decoration: none;
+}
+
+#link-to-code:hover {
+    color: #0B60B0;
 }
 
 .invisible {
@@ -48,9 +61,16 @@ body {
     align-items: center;
 }
 
+h1 {
+    text-decoration: underline;
+}
+
 .reset {
     width: 5rem;
     height: 2.5rem;
+    background-color: #F0EDCF;
+    border: 0.3rem double #000000;
+    border-radius: 2rem;
 }
 
 .user-choice-container,
@@ -92,6 +112,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 15rem;
+    font-size: larger;
 }
 
 .tally > * {
