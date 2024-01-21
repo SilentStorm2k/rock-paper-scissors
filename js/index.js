@@ -20,6 +20,8 @@ reset.addEventListener('click', () => {
     userScore.textContent = "0";
     computerScore.textContent = "0";
     currentResult.textContent = "";
+    userScore.style.color = "#000000";
+    computerScore.style.color = "#000000";
 });
 
 userChoice.addEventListener('click', startRound);
