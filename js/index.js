@@ -69,22 +69,6 @@ function simulatePlay (player, computer) {
     return result;
 }
 
-function game() {
-    let playerWins = 0, computerWins = 0, roundCount = 1;
-    let result;
-    while (playerWins < 5 && computerWins < 5) {
-        console.log(`Round ${roundCount++}: Tally: You -> ${playerWins}, Computer -> ${computerWins}`);
-        result = playRound(getUserChoice());
-        console.log(result)
-        if (result.substring(0, 7) == "You Win")
-            playerWins++;
-        else
-            computerWins++;
-    }
-    let winner = playerWins == 5 ? "You win the game" : "You lose! Computer wins!";
-    console.log(`${winner} -> Tally: You -> ${playerWins}, Computer -> ${computerWins}`);
-}
-
 const userChoice = document.querySelector(".user-choice-container");
 let currentUserChoice = rock;
 
